@@ -1,189 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E-Online - Learn and Grow</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FUNT ROBOTICS - Learn Robotics & AI</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="stylesheet" href="style.css">
+
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
     }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 8%;
+    .course-card {
       background-color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-    .sign-up {
-      padding: 10px 20px;
-      background: linear-gradient(90deg, #6D5DFB, #C86DD7);
-      color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 60px 8%;
-      background-color: white;
-    }
-    .hero-text {
-      max-width: 50%;
-    }
-    .hero-text h1 {
-      font-size: 48px;
-      color: #1d1d1d;
-    }
-    .hero-text h1 span {
-      color: #fc7a1e;
-    }
-    .hero-text p {
-      margin: 20px 0;
-      color: #555;
-    }
-    .hero-stats {
-      display: flex;
-      align-items: center;
-      margin-top: 20px;
-    }
-    .contact-button {
-      margin-right: 30px;
-      padding: 12px 24px;
-      background: linear-gradient(90deg, #6D5DFB, #C86DD7);
-      border: none;
-      border-radius: 30px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .stats {
-      display: flex;
-      flex-direction: column;
-      font-weight: 600;
-    }
-    .stats span {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-    .hero-image {
-      position: relative;
-    }
-    .hero-image img {
-      width: 400px;
-      border-radius: 20px;
-    }
-    .courses {
-      padding: 60px 8%;
-    }
-    .courses h2 {
-      font-size: 32px;
-      margin-bottom: 40px;
-      color: #1d1d1d;
-    }
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .course {
-      background: linear-gradient(135deg, #f5576c, #f093fb);
-      padding: 30px;
-      border-radius: 20px;
+      color: black;
+      width: 240px;
+      min-width: 240px;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex-shrink: 0;
       text-align: center;
-      color: white;
-      font-weight: 600;
-      font-size: 18px;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
     }
-    .course:nth-child(2) {
-      background: linear-gradient(135deg, #6D5DFB, #C86DD7);
+    .course-card:hover {
+      transform: translateY(-6px);
     }
-    .course:nth-child(3) {
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-    }
-    .course:nth-child(4) {
-      background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
-      color: #1d1d1d;
-    }
-    .course:hover {
-      transform: translateY(-5px);
-    }
-    .browse-all {
-      margin-top: 40px;
-      text-align: center;
-    }
-    .browse-all button {
-      padding: 12px 24px;
-      background: linear-gradient(90deg, #6D5DFB, #C86DD7);
-      border: none;
-      border-radius: 30px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
+    .course-card img {
+      display: block;
+      margin: 0 auto 0.5rem;
     }
   </style>
 </head>
-<body>
+<body class="bg-gray-900 text-white">
 
-<header>
-  <div class="logo">E-Online.</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Category</a>
-    <a href="#">Courses</a>
-    <a href="#">Blog</a>
+<!-- Header -->
+<header class="flex justify-between items-center px-6 py-4 bg-gray-800">
+  <div>
+    <img src="images/funt-logo.svg" alt="Funt Logo" width="150" height="150" />
+  </div>
+  <nav class="space-x-4">
+    <a href="#" class="hover:text-yellow-400">Home</a>
+    <a href="#about" class="hover:text-yellow-400">About</a>
+    <a href="#courses" class="hover:text-yellow-400">Courses</a>
+    <a href="#contact" class="hover:text-yellow-400">Contact</a>
+    <a href="#" class="hover:text-yellow-400">Login</a>
   </nav>
-  <button class="sign-up">Sign Up</button>
+  <button class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300">Sign Up</button>
 </header>
 
-<section class="hero">
-  <div class="hero-text">
-    <h1>Investing in <br> Knowledge and <br> <span>Your Future</span></h1>
-    <p>Our e-learning programs have been developed to be a vehicle of delivering multimedia learning solutions for your business.</p>
-    <div class="hero-stats">
-      <button class="contact-button">Contact</button>
-      <div class="stats">
-        <span>50+ Career Courses</span>
-        <span>1M+ Our Students</span>
-      </div>
-    </div>
+<!-- Hero Section -->
+<section class="flex flex-col lg:flex-row items-center justify-between px-6 py-10">
+  <div class="lg:w-1/2">
+    <h1 class="text-4xl font-bold leading-tight mb-4">Learn Robotics <br> & Emerging Tech <br><span class="text-yellow-400">With FUNT ROBOTICS</span></h1>
+    <p class="text-lg text-gray-300">India’s first ISO-certified affordable robotics academy for students aged 8–20. Get hands-on kits, 1:1 mentorship, and build futuristic projects with ease!</p>
   </div>
-  <div class="hero-image">
-  <img src="./kids.png" alt="Student Image">
-</div>
+  <div class="lg:w-1/2 mt-6 lg:mt-0">
+    <img src="images/kids-learning-robotics.jpg" 
+     alt="Kids learning robotics" 
+     class="rounded-lg shadow-lg w-full h-auto object-cover max-h-[400px]">
+
+  </div>
 </section>
 
-<section class="courses">
-  <h2>Browse Top Essential Career Courses</h2>
-  <div class="course-grid">
-    <div class="course">UI/UX Design</div>
-    <div class="course">Web Development</div>
-    <div class="course">Digital Marketing</div>
-    <div class="course">Practical Learning</div>
-  </div>
-  <div class="browse-all">
-    <button>Browse All</button>
+<!-- Courses Section -->
+<section id="courses">
+  <h2 class="text-2xl font-semibold text-center text-yellow-400 mt-10 mb-6">
+    Explore Our Top Robotics Courses
+  </h2>
+
+  <div class="overflow-x-auto px-6 pb-10">
+    <div class="flex space-x-4 min-w-max">
+
+      <div class="course-card">
+        <img src="images/scratch.png" alt="Scratch">
+        <h3 class="text-lg font-semibold">Scratch Programming</h3>
+        <p>1 Month | Block-based Coding</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/fluency/96/electronics.png" alt="Electronics">
+        <h3 class="text-lg font-semibold">Basic Electronics</h3>
+        <p>2 Months | Circuits & Components</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/3d-fluency/96/car--v1.png" alt="Smart Wheels">
+        <h3 class="text-lg font-semibold">Smart Wheels</h3>
+        <p>3 Months | C/C++, Robots</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/fluency/96/android-os.png" alt="Android">
+        <h3 class="text-lg font-semibold">Android Development</h3>
+        <p>2 Months | App Building</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/3d-fluency/96/brain.png" alt="RoboBrains">
+        <h3 class="text-lg font-semibold">RoboBrains</h3>
+        <p>4 Months | Brain-Controlled Robots</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/3d-fluency/96/3d-printing.png" alt="3D Printing">
+        <h3 class="text-lg font-semibold">3D Printing</h3>
+        <p>3 Months | Design & Print Projects</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/color/96/circuit-board.png" alt="PCB Design">
+        <h3 class="text-lg font-semibold">PCB Designing</h3>
+        <p>Hands-on PCB Fabrication</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/fluency/96/drone.png" alt="Drone">
+        <h3 class="text-lg font-semibold">Drone Programming</h3>
+        <p>2 Months | Build & Fly</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/3d-fluency/96/iot.png" alt="IoT">
+        <h3 class="text-lg font-semibold">IoT with Raspberry Pi</h3>
+        <p>4 Months | Python + Projects</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/color/96/html-5--v1.png" alt="Web Dev">
+        <h3 class="text-lg font-semibold">Web Development</h3>
+        <p>2 Months | HTML, CSS, JS</p>
+      </div>
+
+      <div class="course-card">
+        <img src="https://img.icons8.com/3d-fluency/96/robot-2.png" alt="AI ML">
+        <h3 class="text-lg font-semibold">AI & ML</h3>
+        <p>4 Months | Train Your Own Bots</p>
+      </div>
+
+    </div>
   </div>
 </section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-center py-4">
+  <p class="text-sm text-gray-400">© 2025 FUNT ROBOTICS | Learn. Build. Innovate.</p>
+</footer>
 
 </body>
 </html>
