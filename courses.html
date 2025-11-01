@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Courses - Funt Robotics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* show a slim, usable scrollbar for the courses area and keep smooth touch scrolling */
+    .courses-scroll::-webkit-scrollbar { height: 10px; }
+    .courses-scroll::-webkit-scrollbar-track { background: transparent; }
+    .courses-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.12);
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    .courses-scroll { -ms-overflow-style: auto; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) transparent; -webkit-overflow-scrolling: touch; }
+
+    /* previously hid all scrollbars - removed so courses scrollbar works */
+    /* .no-scrollbar::-webkit-scrollbar { display: none; }
+       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    */
+
+    .arrow-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.95);
+      color: #000;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      transition: transform .12s ease, opacity .12s ease, background .12s ease;
+      font-size: 18px;
+      line-height: 1;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      pointer-events: auto;
+    }
+    .arrow-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,1); }
+    .arrow-btn:active { transform: translateY(0); }
+    .arrow-btn:focus { outline: 3px solid rgba(250,204,21,0.35); outline-offset: 2px; }
+    .arrow-btn:disabled { opacity: .35; cursor: default; pointer-events: none; }
+
+    /* place arrows visually outside the scroll area and ensure they sit above it */
+    .arrow-left { left: 6px; }
+    .arrow-right { right: 6px; }
+    .arrow-outer {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+    }
+
+    /* keep container padded so items are not hidden under arrows */
+    .courses-wrapper { position: relative; }
+    .courses-scroll { padding: 8px 72px; } /* room for arrows */
+
+    @media (max-width: 640px) {
+      .arrow-btn { width: 44px; height: 44px; font-size: 16px; }
+      .courses-scroll { padding: 8px 56px; }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!-- Header/navbar -->
+  <div id="header-placeholder"></div>
+
+  <!-- Main content -->
+  <main class="max-w-6xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-semibold mb-4">Our Courses</h1>
+    <p class="mb-6 text-gray-300">Learn robotics step-by-step. View our <a href="products.html" class="text-yellow-400">Products</a> as well.</p>
+
+    <div class="courses-wrapper">
+      <!-- left arrow (outside scroll container) -->
+      <div class="arrow-outer" style="left:0;">
+        <button id="courses-scroll-left" type="button" aria-label="Scroll left" class="arrow-btn arrow-left">
+          ◀
+        </button>
+      </div>
+
+      <!-- scroll container -->
+      <div id="courses-container"
+           class="courses-scroll no-scrollbar overflow-x-auto flex gap-4 py-4 scroll-smooth"
+           tabindex="0" role="list" aria-label="Courses list">
+        <!-- sample course cards -->
+        <article class="min-w-[260px] flex-shrink-0 bg-gray-800 border border-gray-700 rounded-lg p-4" role="listitem">
+          <h2 class="text-xl font-medium">Intro to Robotics</h2>
+          <p class="text-sm text-gray-300 mt-2">Basics of circuits and controllers.</p>
+          <div class="mt-4 font-bold">$120</div>
+        </article>
+
+        <article class="min-w-[260px] flex-shrink-0 bg-gray-800 border border-gray-700 rounded-lg p-4" role="listitem">
+          <h2 class="text-xl font-medium">Arduino Projects</h2>
+          <p class="text-sm text-gray-300 mt-2">Hands-on Arduino & sensors.</p>
+          <div class="mt-4 font-bold">$150</div>
+        </article>
+
+        <article class="min-w-[260px] flex-shrink-0 bg-gray-800 border border-gray-700 rounded-lg p-4" role="listitem">
+          <h2 class="text-xl font-medium">Python for Robotics</h2>
+          <p class="text-sm text-gray-300 mt-2">Control robots with Python.</p>
+          <div class="mt-4 font-bold">$140</div>
+        </article>
+
+        <article class="min-w-[260px] flex-shrink-0 bg-gray-800 border border-gray-700 rounded-lg p-4" role="listitem">
+          <h2 class="text-xl font-medium">AI & Vision</h2>
+          <p class="text-sm text-gray-300 mt-2">Computer vision basics for robots.</p>
+          <div class="mt-4 font-bold">$200</div>
+        </article>
+
+        <article class="min-w-[260px] flex-shrink-0 bg-gray-800 border border-gray-700 rounded-lg p-4" role="listitem">
+          <h2 class="text-xl font-medium">Advanced Robotics</h2>
+          <p class="text-sm text-gray-300 mt-2">Kinematics, sensors, and control loops.</p>
+          <div class="mt-4 font-bold">$250</div>
+        </article>
+      </div>
+
+      <!-- right arrow (outside scroll container) -->
+      <div class="arrow-outer" style="right:0;">
+        <button id="courses-scroll-right" type="button" aria-label="Scroll right" class="arrow-btn arrow-right">
+          ▶
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-4">
+    <p class="text-sm text-gray-400">© 2025 FUNT ROBOTICS | Learn. Build. Innovate.</p>
+  </footer>
+
+  <!-- JS: robust arrow wiring and safety checks -->
+  <script>
+    (function () {
+      const container = document.getElementById('courses-container');
+      const btnLeft = document.getElementById('courses-scroll-left');
+      const btnRight = document.getElementById('courses-scroll-right');
+      if (!container || !btnLeft || !btnRight) return;
+
+      // utility: clamp
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+      // compute scroll amount (responsive)
+      const scrollAmount = () => {
+        const w = container.clientWidth || 600;
+        return Math.max(200, Math.round(w * 0.6));
+      };
+
+      // try native smooth first, fallback to RAF animation if not supported
+      function smoothScrollTo(target) {
+        // clamp
+        const final = clamp(target, 0, container.scrollWidth - container.clientWidth);
+        // if browser supports smooth behavior, use it
+        try {
+          container.scrollTo({ left: final, behavior: 'smooth' });
+          return;
+        } catch (e) {
+          // fallback to manual animation
+        }
+        const start = container.scrollLeft;
+        const distance = final - start;
+        const duration = 350;
+        let startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          const elapsed = ts - startTime;
+          const t = Math.min(1, elapsed / duration);
+          // easeOutQuad
+          const ease = 1 - (1 - t) * (1 - t);
+          container.scrollLeft = Math.round(start + distance * ease);
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      function updateButtons() {
+        const leftPossible = container.scrollLeft > 1;
+        const rightPossible = container.scrollLeft + container.clientWidth < container.scrollWidth - 1;
+        btnLeft.disabled = !leftPossible;
+        btnRight.disabled = !rightPossible;
+      }
+
+      // handlers
+      btnLeft.addEventListener('click', () => {
+        smoothScrollTo(container.scrollLeft - scrollAmount());
+        // update after expected animation time
+        setTimeout(updateButtons, 380);
+      });
+
+      btnRight.addEventListener('click', () => {
+        smoothScrollTo(container.scrollLeft + scrollAmount());
+        setTimeout(updateButtons, 380);
+      });
+
+      // update on scroll/resize
+      container.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', updateButtons);
+
+      // keyboard support
+      container.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); smoothScrollTo(container.scrollLeft - scrollAmount()); setTimeout(updateButtons, 380); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); smoothScrollTo(container.scrollLeft + scrollAmount()); setTimeout(updateButtons, 380); }
+      });
+
+      // observe content changes and layout
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(updateButtons);
+        ro.observe(container);
+        // also observe children (their size changes for dynamic content)
+        Array.from(container.children).forEach(child => ro.observe(child));
+      } else {
+        // fallback polling for a short time
+        const fallback = setInterval(updateButtons, 500);
+        setTimeout(() => clearInterval(fallback), 8000);
+      }
+
+      // ensure initial state runs after layout complete
+      function onReady() { updateButtons(); setTimeout(updateButtons, 200); }
+      if (document.readyState === 'complete') onReady(); else window.addEventListener('load', onReady);
+      // also run on DOM ready
+      if (document.readyState !== 'loading') onReady(); else document.addEventListener('DOMContentLoaded', onReady);
+    })();
+  </script>
+
+  <script>
+    (function loadHeader() {
+        fetch('header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to load header.html');
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+            })
+            .catch(error => console.error("Error loading header:", error));
+    })();
+  </script>
+</body>
+</html>

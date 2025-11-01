@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FUNT ROBOTICS - Learn Robotics & AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background:#111827; 
+            color:#fff; 
+            /* REMOVED: padding-top: 72px; */
+        }
+        html { scroll-behavior: smooth; }
+        .courses-scroll { padding: 8px 56px; -webkit-overflow-scrolling: touch; }
+        .courses-scroll::-webkit-scrollbar { height: 10px; }
+        .courses-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 9999px; }
+        .course-card { min-width: 240px; background: #0f1724; border: 1px solid rgba(255,255,255,0.03); padding:1rem; border-radius:8px; }
+        .btn-ghost { background: rgba(255,255,255,0.04); color: #fff; padding:0.5rem 0.75rem; border-radius:6px; }
+
+        /* HERO STYLES for Scroll Effect */
+        .hero {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            margin-bottom: -100vh; /* Key for sticky positioning with the next element */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: #fff;
+            background-image: url('images/kids-learning-robotics.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(17,24,39,0.35) 0%, rgba(17,24,39,0.7) 70%);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        #main-content-wrap {
+            position: relative;
+            z-index: 2; 
+            background: #111827; 
+            margin-top: 100vh; /* Pushes content down by the hero's height */
+        }
+        
+        /* Other Hero Styles (unchanged) */
+        .hero-content {
+            position: relative; z-index: 15; max-width: 1100px; padding: 3rem 1rem; display: flex; gap: 2rem; align-items: center;
+        }
+        .hero-cta { background: linear-gradient(90deg,#f97316,#f59e0b); color:#000; padding:0.9rem 1.2rem; border-radius:10px; font-weight:700; }
+        .hero-title { font-size: clamp(1.6rem, 3vw, 2.75rem); font-weight:800; margin:0; line-height:1; letter-spacing:-0.01em; }
+        .hero-sub { color: rgba(255,255,255,0.85); margin-top:0.5rem; }
+        .vfx-canvas { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+        .hero-logo { display: inline-block; padding: 8px; background: #ffffff; border-radius: 6px; box-shadow: 0 12px 32px rgba(2,6,23,0.5); transform: translateZ(0); }
+        .hero-logo img { width: 220px; height: auto; display: block; object-fit: contain; border-radius: 2px; transition: transform .6s ease, filter .16s ease; filter: grayscale(100%) contrast(1.05) brightness(0.22) saturate(0); }
+        .hero-logo:hover img { filter: grayscale(100%) contrast(1.05) brightness(0.30) saturate(0); }
+        .hero-image.floaty { animation: floaty 6s ease-in-out infinite; }
+        @media (max-width: 780px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-image { width: 160px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <section class="hero" aria-hidden="false">
+        <canvas id="heroCanvas" class="vfx-canvas" width="1600" height="900"></canvas>
+        <div class="hero-content">
+            <div style="flex:1">
+                <h1 class="hero-title">Build. Code. Create.</h1>
+                <p class="hero-sub">Hands-on kits, mentorship and project-based learning in robotics & AI for ages 8–20.</p>
+                <div style="margin-top:1rem">
+                    <a href="signup.html" class="hero-cta">Get Started</a>
+                    <a href="#courses" class="btn-ghost ml-3">View Courses</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="main-content-wrap">
+        
+        <main class="max-w-6xl mx-auto py-10 px-4">
+            <section class="mb-12">
+                <h1 class="text-3xl font-bold mb-2">Learn Robotics & Emerging Tech</h1>
+                <p class="text-gray-300">Hands-on kits, mentorship and practical projects for ages 8–20.</p>
+            </section>
+
+            <section id="courses" class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">Explore Our Top Robotics</h2>
+
+      <div class="relative">
+        <button id="scrollLeft" aria-label="Scroll left" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 z-10">◀</button>
+
+        <div id="coursesScroll" class="courses-scroll overflow-x-auto flex gap-4" tabindex="0" aria-label="Courses list">
+          <a class="course-card" href="courses/scratch.html">
+            <img src="images/scratch.png" alt="Scratch" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">Scratch Programming</h3>
+            <p class="text-sm text-gray-300">1 Month | Block-based Programming</p>
+          </a>
+
+          <a class="course-card" href="courses/basic-electronics.html">
+            <img src="images/electronics.png" alt="Electronics" class="w-20 h-20 mb-3 object-cover rounded-md" />
+            <h3 class="font-semibold">Basic Electronics</h3>
+            <p class="text-sm text-gray-300">2 Months | Circuits</p>
+          </a>
+
+          <a class="course-card" href="courses/smart-wheels.html">
+            <img src="images/car.png" alt="Smart Wheels" class="w-20 h-20 mb-3 object-cover rounded-md" />
+            <h3 class="font-semibold">Smart Wheels</h3>
+            <p class="text-sm text-gray-300">3 Months | C/C++, Robots</p>
+          </a>
+
+          <a class="course-card" href="courses/android-development.html">
+            <img src="images/android.png" alt="Android" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">Android Development</h3>
+            <p class="text-sm text-gray-300">2 Months | App Building</p>
+          </a>
+
+          <a class="course-card" href="courses/robobrains.html">
+            <img src="images/brain.png" alt="RoboBrains" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">RoboBrains</h3>
+            <p class="text-sm text-gray-300">4 Months | Brain-Controlled Robots</p>
+          </a>
+
+          <a class="course-card" href="courses/3d-printing.html">
+            <img src="images/3d-printing.png" alt="3D Printing" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">3D Printing</h3>
+            <p class="text-sm text-gray-300">3 Months | Design & Print Projects</p>
+          </a>
+
+          <a class="course-card" href="courses/pcb-designing.html">
+            <img src="images/pcb.png" alt="PCB" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">PCB Designing</h3>
+            <p class="text-sm text-gray-300">Hands-on PCB Fabrication</p>
+          </a>
+
+          <a class="course-card" href="courses/drone-programming.html">
+            <img src="images/drone.png" alt="Drone" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">Drone Programming</h3>
+            <p class="text-sm text-gray-300">2 Months | Build & Fly</p>
+          </a>
+
+          <a class="course-card" href="courses/iot-raspberry-pi.html">
+            <img src="images/iot.png" alt="IoT" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">IoT with Raspberry Pi</h3>
+            <p class="text-sm text-gray-300">4 Months | Python + Projects</p>
+          </a>
+
+          <a class="course-card" href="courses/web-development.html">
+            <img src="images/web.png" alt="Web Dev" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">Web Development</h3>
+            <p class="text-sm text-gray-300">2 Months | HTML, CSS, JS</p>
+          </a>
+
+          <a class="course-card" href="courses/ai-ml.html">
+            <img src="images/aiml.png" alt="AI ML" class="w-20 h-20 mb-3 object-contain" />
+            <h3 class="font-semibold">AI & ML</h3>
+            <p class="text-sm text-gray-300">4 Months | Train Your Own Bots</p>
+          </a>
+        </div>
+
+        <button id="scrollRight" aria-label="Scroll right" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full w-10 h-10 z-10">▶</button>
+      </div>
+    </section>
+
+            <section class="mb-12">
+                <a href="products.html" class="btn-ghost">Products</a>
+                <a href="contact.html" class="btn-ghost ml-3">Contact</a>
+                <a class="text-sm text-gray-400">Website is under Contruction.</a>
+            </section>
+        </main>
+
+        <footer class="bg-gray-800 text-center py-4">
+            <p class="text-sm text-gray-400">© 2025 FUNT ROBOTICS | Learn. Build. Innovate.</p>
+        </footer>
+    </div>
+
+
+    <script>
+        // FUNCTION TO LOAD HEADER (UNCHANGED)
+       
+        // Add this new function to your existing <script> block in index.html
+function setupMobileMenu() {
+        const button = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        if (button && menu) {
+            button.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+            });
+        }
+    }
+
+
+    // 2. FUNCTION TO LOAD HEADER (CRITICAL: CALL setupMobileMenu() HERE)
+    (function loadHeader() {
+        fetch('header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to load header.html');
+                return response.text();
+            })
+            .then(html => {
+                // Insert the header HTML
+                document.getElementById('header-placeholder').innerHTML = html;
+                
+                // ⭐️ Call the menu setup function AFTER the HTML is in the DOM ⭐️
+                setupMobileMenu(); 
+            })
+            .catch(error => console.error("Error loading header:", error));
+    })();
+
+(function loadHeader() {
+    fetch('header.html')
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load header.html');
+            return response.text();
+        })
+        .then(html => {
+            // 1. Insert the header HTML
+            document.getElementById('header-placeholder').innerHTML = html;
+            
+            // 2. ⭐️ CRITICAL STEP: Call the menu setup function AFTER insertion ⭐️
+            setupMobileMenu(); 
+        })
+        .catch(error => console.error("Error loading header:", error));
+})();
+
+        // COURSES SCROLL FUNCTIONALITY (UNCHANGED)
+        (function () {
+            const left = document.getElementById('scrollLeft');
+            const right = document.getElementById('scrollRight');
+            const container = document.getElementById('coursesScroll');
+            if (!container) return;
+
+            const amount = () => Math.max(200, Math.round(container.clientWidth * 0.6));
+
+            left.addEventListener('click', () => container.scrollBy({ left: -amount(), behavior: 'smooth' }));
+            right.addEventListener('click', () => container.scrollBy({ left: amount(), behavior: 'smooth' }));
+
+            // allow arrow keys when focused
+            container.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') container.scrollBy({ left: -100, behavior: 'smooth' });
+                if (e.key === 'ArrowRight') container.scrollBy({ left: 100, behavior: 'smooth' });
+            });
+
+            // FIX: Prevent index page vertical scroll when horizontal scroll is at its limit
+            container.addEventListener('wheel', (e) => {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    if (e.deltaX < 0 && container.scrollLeft === 0) {
+                        e.preventDefault();
+                    }
+                    else if (e.deltaX > 0 && (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1)) {
+                        e.preventDefault();
+                    }
+                }
+            }, { passive: false });
+        })();
+
+    </script>
+</body>
+</html>
